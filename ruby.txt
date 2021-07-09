@@ -6,3 +6,17 @@ Create a variable and assign it a value.
 first_name = "Tyler"
 
 
+
+interpolation1
+Show how to use string interpolation and concatenation. 
+
+# Strings can be in single or double quotes but note that interpolation 
+# will only work with double quotes. 
+
+# String interpolation
+name = "Tyler"
+greeting = "Hello, #{name}, it is good to see you."
+
+# String concatenation
+new_name = "Bill"
+new_greeting = "Hello, " + new_name + ", it is good to see you."
