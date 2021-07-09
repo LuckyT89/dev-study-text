@@ -1,0 +1,8 @@
+variables1
+Create a variable and assign it a value.
+
+# Ruby uses the snake_case convention for variable names 
+# instead of the camelCase convention like other languages.
+first_name = "Tyler"
+
+
