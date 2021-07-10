@@ -1,8 +1,7 @@
 ***1variables1***
 Create a variable and assign it a value.
 
-# Ruby uses the snake_case convention for variable names 
-# instead of the camelCase convention like other languages.
+# Ruby uses the snake_case convention for variable names instead of the camelCase convention like other languages.
 first_name = "Tyler"
 
 
@@ -12,8 +11,7 @@ first_name = "Tyler"
 *** 2interpolation1
 Show how to use string interpolation and concatenation. 
 
-# Strings can be in single or double quotes but note that interpolation 
-# will only work with double quotes. 
+# Strings can be in single or double quotes but note that interpolation will only work with double quotes. 
 
 # String interpolation
 name = "Tyler"
@@ -97,8 +95,7 @@ def names
     person3 = "Jessica"
 end
 
-# A method will return the value of the last statement by default. This example 
-# will return person3 with a value of 'Jessica'.
+# A method will return the value of the last statement by default. This example will return person3 with a value of 'Jessica'.
 puts names
 
 
@@ -108,8 +105,7 @@ def names2
     person3 = "Jessica"
 end
 
-# The return keyword will interupt the execution of the method and return the value 
-# of that line. This example will return person2 with a value of 'Bill'.
+# The return keyword will interupt the execution of the method and return the value of that line. This example will return person2 with a value of 'Bill'.
 puts names2
 
 
@@ -119,9 +115,7 @@ puts names2
 *** 8pry1
 Show how to use the pry gem for debugging.
 
-# After requiring the pry gem, you can add binding.pry in your code to stop 
-# the code execution and open a new REPL. You can look at the value of variables 
-# and update the values. Type 'exit' to close. 
+# After requiring the pry gem, you can add binding.pry in your code to stop the code execution and open a new REPL. You can look at the value of variables and update the values. Type 'exit' to close. 
 
 require 'pry'
 
@@ -148,23 +142,19 @@ def scope_method
     var3 = "Dawn"
     var4 = "Jill"
 
-    # var2 will not print because it was definied outside the 
-    # method but is being called inside the method. 
+    # var2 will not print because it was definied outside the method but is being called inside the method. 
     puts var2
 
-    #var4 will print becuase it was defined inside a method and 
-    # is being called inside the method. 
+    #var4 will print becuase it was defined inside a method and is being called inside the method. 
     puts var4
 end
 
 scope_method
 
-# var1 will print becuase it was definied outside a method
-# and is also being called outside a method.
+# var1 will print becuase it was definied outside a method and is also being called outside a method.
 puts var1 
 
-# var3 will not print because it was defined inside a method
-# but is being called outside that method.
+# var3 will not print because it was defined inside a method but is being called outside that method.
 puts var3 
 
 
