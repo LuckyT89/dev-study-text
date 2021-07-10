@@ -1,4 +1,4 @@
-variables1
+***variables1***
 Create a variable and assign it a value.
 
 # Ruby uses the snake_case convention for variable names 
@@ -7,7 +7,7 @@ first_name = "Tyler"
 
 
 
-interpolation1
+***interpolation1***
 Show how to use string interpolation and concatenation. 
 
 # Strings can be in single or double quotes but note that interpolation 
@@ -20,3 +20,149 @@ greeting = "Hello, #{name}, it is good to see you."
 # String concatenation
 new_name = "Bill"
 new_greeting = "Hello, " + new_name + ", it is good to see you."
+
+
+
+***methods1***
+Create a method and then invoke it.
+
+def say_hello
+    puts "Hello!"
+end
+
+say_hello
+
+
+
+***methods2***
+Create a method that takes parameters and then invoke it. 
+
+def greeting(name, time_of_day)
+    puts "Hello #{name}, it is a beautiful #{time_of_day}."
+end
+
+greeting("Dan", "morning")
+
+
+
+***methods3***
+Create a method with default arguments and then invoke it once while supplying arguments and once without supplying any arguments. 
+
+def programmer_greeting(name="friend", language="JavaScript")
+    puts "Hello #{name}, I heard you are a great #{language} programmer."
+end
+
+programmer_greeting("Sarah", "Python")
+programmer_greeting
+
+
+
+***printing1***
+Show how to print multiple items both on the same line and then printed out on separate lines. 
+
+item1 = "First thing to print."
+item2 = "Second thing to print."
+item3 = "Third thing to print."
+
+print item1
+print item2
+print item3
+
+puts
+
+puts item1
+puts item2
+puts item3
+
+
+
+***return1***
+Show what a method will return by default and what it will return when the 'return' keyword is used. 
+
+def names
+    person1 = "John"
+    person2 = "Bill"
+    person3 = "Jessica"
+end
+
+# A method will return the value of the last statement by default. This example 
+# will return person3 with a value of 'Jessica'.
+puts names
+
+
+def names2
+    person1 = "John"
+    return person2 = "Bill"
+    person3 = "Jessica"
+end
+
+# The return keyword will interupt the execution of the method and return the value 
+# of that line. This example will return person2 with a value of 'Bill'.
+puts names2
+
+
+
+***pry1***
+Show how to use the pry gem for debugging.
+
+# After requiring the pry gem, you can add binding.pry in your code to stop 
+# the code execution and open a new REPL. You can look at the value of variables 
+# and update the values. Type 'exit' to close. 
+
+require 'pry'
+
+def pry_testing
+    thing1 = "This is the first variable"
+    thing2 = 7
+    thing3 = "Washington"
+    binding.pry
+end
+
+pry_testing
+
+
+
+***scope1***
+Create a method and declare some variables both inside and outside the method. Show how scope determines which variables can be accessed from different locations in the program. 
+
+var1 = "Ted"
+var2 = "Bill"
+
+def scope_method
+    var3 = "Dawn"
+    var4 = "Jill"
+
+    # var2 will not print because it was definied outside the 
+    # method but is being called inside the method. 
+    puts var2
+
+    #var4 will print becuase it was defined inside a method and 
+    # is being called inside the method. 
+    puts var4
+end
+
+scope_method
+
+# var1 will print becuase it was definied outside a method
+# and is also being called outside a method.
+puts var1 
+
+# var3 will not print because it was defined inside a method
+# but is being called outside that method.
+puts var3 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
