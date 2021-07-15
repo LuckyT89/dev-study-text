@@ -247,7 +247,7 @@ end
 
 
 *** 15looping1
-Write a loop that runs 10 times. 
+Write a loop that runs 10 times. Show how you can also do this without a counter using the times method. 
 
 counter = 0
 
@@ -259,6 +259,12 @@ loop do
     if counter >= 10
         break
     end
+end
+
+
+# The times method must be called on an integer and will tell your loop to run a specific number of times. 
+10.times do
+    puts "Run this loop 10 times without a counter"
 end
 
 
@@ -354,3 +360,97 @@ puts
 puts numbers.include?(8)
 
 puts numbers.size
+
+
+
+
+
+*** 21iteration1
+Show how to use the each method and the map/collect method to iterate through an array. 
+
+# The each method will iterate through an array but note that the return value will always be the original array. 
+primary_colors = ["Red", "Yellow", "Blue"]
+updated_primary_colors = primary_colors.each do |color|
+  puts "Primary Color #{color} is #{color.length} letters long."
+end 
+puts updated_primary_colors
+
+
+
+# The map or collect method (they both do the same thing) will iterate through an array but it will modify the array. 
+toppings = ["pickles", "mushrooms", "bacon"]
+updated_toppings = toppings.map do |topping|
+    "I love #{topping} on my burgers!"
+end
+puts updated_toppings
+
+
+
+
+
+*** 22iteration2
+Show how to use the all, none, any, and include boolean methods on an array. 
+
+numbers = [1, 3, 4]
+
+all_under_seven = numbers.all? do |number|
+    number < 7
+end
+puts all_under_seven
+
+
+none_equal_five = numbers.none? do |number|
+    number == 5
+end
+puts none_equal_five
+
+
+any_greater_than_four = numbers.any? do |number|
+    number > 4
+end
+puts any_greater_than_four
+
+
+puts numbers.include?(3)
+
+
+
+
+
+***23iteration3
+Show how to use the select, detect/find, and reject methods on an array. 
+
+numbers = [1,2,3,4,5]
+
+# The select method will return a new array with the elements that caused the block to return true. 
+new_numbers1 = numbers.select do |number|
+    number.even?
+end
+print new_numbers1
+puts
+
+# The detect or find method (they both do the same thing) will return the first element that makes the 
+# block evaluate to true. 
+new_numbers2 = numbers.find do |number|
+    number > 3
+end
+print new_numbers2
+puts
+
+# The reject method will return a new array with the elements that caused the block to return false. 
+new_numbers3 = numbers.reject do |number|
+    number.even?
+end
+print new_numbers3
+puts
+
+
+
+
+
+***24iteration4
+Show how to sort an array. 
+
+items = ["ball", "dog", "apple", "elephant", "cat"]
+print items.sort
+puts
