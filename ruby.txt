@@ -161,12 +161,86 @@ puts var3
 
 
 
+***10truthy1***
+Show how to use the bang operator (!) to determine if something is truthy or falsey. 
+
+# variable is assigned a string with a value of "hello". This is considered truthy. Using a single ! operator will return to oppsite of this which will be false. 
+# Using the ! operator twice will take the opposite again and return true. 
+
+# Note in Ruby only false and nil are considered falsey values. Everything else is truthy, even 0 and an empty string ''. 
+
+variable = "hello"
+
+puts variable
+puts !variable
+puts !!variable
 
 
 
 
 
+***11boolean1***
+Show how to use the And and Or boolean operators. 
 
+# For the And operator, both expressions must evaluate to true in order to return true.
+puts true && true
+puts true && false
+
+# For the Or operator, only one expression must evaluate to true in order to return true. 
+puts false || true
+puts false || false
+
+
+
+
+
+***12boolean1***
+Show how to use the comparison operators. 
+
+puts "yellow" == "yellow"
+puts "yellow" != "yellow"
+
+puts 7 > 3
+puts 7 < 3
+puts 10 >= 10
+puts 10 <= 10
+
+
+
+
+
+***13conditional1***
+Write an if statement. 
+
+dog = "tired"
+
+if dog == "hungry"
+    puts "Feed the dog."
+elsif dog == "bored"
+    puts "Walk the dog."
+elsif dog == "tired"
+    puts "Let the dog sleep."
+else
+    puts "The dog is fine."
+end
+
+
+
+
+
+***14conditional1***
+Write a case statement.
+
+current_weather = "raining"
+
+case current_weather
+  when "sunny"
+    puts "grab some sunscreen!"
+  when "raining"
+    puts "grab an umbrella"
+  when "snowing"
+    puts "bundle up"
+end 
 
 
 
