@@ -1,4 +1,4 @@
-***1variables1***
+*** 1variables1
 Create a variable and assign it a value.
 
 # Ruby uses the snake_case convention for variable names instead of the camelCase convention like other languages.
@@ -161,7 +161,7 @@ puts var3
 
 
 
-***10truthy1***
+*** 10truthy1
 Show how to use the bang operator (!) to determine if something is truthy or falsey. 
 
 # variable is assigned a string with a value of "hello". This is considered truthy. Using a single ! operator will return to oppsite of this which will be false. 
@@ -179,7 +179,7 @@ puts !!variable
 
 
 
-***11boolean1***
+*** 11boolean1
 Show how to use the And and Or boolean operators. 
 
 # For the And operator, both expressions must evaluate to true in order to return true.
@@ -194,7 +194,7 @@ puts false || false
 
 
 
-***12boolean1***
+*** 12boolean1
 Show how to use the comparison operators. 
 
 puts "yellow" == "yellow"
@@ -209,7 +209,7 @@ puts 10 <= 10
 
 
 
-***13conditional1***
+*** 13conditional1
 Write an if statement. 
 
 dog = "tired"
@@ -228,7 +228,7 @@ end
 
 
 
-***14conditional1***
+*** 14conditional1
 Write a case statement.
 
 current_weather = "raining"
@@ -246,3 +246,111 @@ end
 
 
 
+*** 15looping1
+Write a loop that runs 10 times. 
+
+counter = 0
+
+loop do 
+    counter = counter + 1
+
+    puts "The loop has run #{counter} times."
+
+    if counter >= 10
+        break
+    end
+end
+
+
+
+
+
+*** 16looping2
+Write both a while loop and an until loop that runs 10 times. 
+
+counter1 = 0
+while counter1 < 10
+    puts "This is the while loop"
+    counter1 += 1
+end
+
+
+counter2 = 0
+until counter2 == 10
+    puts "This is the until loop"
+    counter2 += 1
+end
+
+
+
+
+
+*** 17arrays1
+Create an array of items. Show how to add new items both at the end of the array and at the beginning of the array. 
+
+fruits = ["banana", "strawberry", "watermelon"]
+
+# Both the shovel operator (<<) and the push method can be used to add items
+# to the end of an array. 
+fruits << "apple"
+fruits.push("peach")
+
+# The unshift method will add an item to the beginning of the array. 
+fruits.unshift("grape")
+
+
+
+
+
+*** 18arrays2
+Create an array of items. Show how to remove items from both the end and the beginning of the array. 
+
+fruits = ["peach", "apple", "banana", "strawberry", "watermelon"]
+
+# The pop method will remove the last item from the array.
+fruits.pop
+
+# The shift method will remove the first item from the array. 
+fruits.shift
+
+
+
+
+
+*** 19arrays3
+Create an array of items. Show how to access some of the different items in the array and how to look up the index of a specific item. 
+
+fruits = ["peach", "apple", "banana", "strawberry", "watermelon"]
+
+puts fruits[1]
+
+# Putting a negative index number will start at the end of the array and work backwards. 
+puts fruits[-2]
+
+# The first and last methods can be used to find the first and last items in an array. 
+puts fruits.first
+puts fruits.last
+
+# The index method will return the index number of the first item that matches the given argument. 
+puts fruits.index("banana")
+
+
+
+
+
+*** 20arrays4
+Create an array of numbers. Show how to use methods to sort the array, reverse the array, show if a specific number is included in the array, and show the size of the array. 
+
+numbers = [4, 8, 3, 5, 9]
+
+# This will not modify the original array, use the sort! method instead if you want to modify the original. 
+print numbers.sort
+puts
+
+# This will not modify the original array, use the reverse! method instead if you want to modify the original. 
+print numbers.reverse
+puts
+
+puts numbers.include?(8)
+
+puts numbers.size
