@@ -228,7 +228,7 @@ end
 
 
 
-*** 14conditional1
+*** 14conditional2
 Write a case statement.
 
 current_weather = "raining"
@@ -417,7 +417,7 @@ puts numbers.include?(3)
 
 
 
-***23iteration3
+*** 23iteration3
 Show how to use the select, detect/find, and reject methods on an array. 
 
 numbers = [1,2,3,4,5]
@@ -448,9 +448,121 @@ puts
 
 
 
-***24iteration4
+*** 24iteration4
 Show how to sort an array. 
 
 items = ["ball", "dog", "apple", "elephant", "cat"]
 print items.sort
 puts
+
+
+
+
+
+*** 25hashes1
+Create a hash using string keys, symbol keys, and using JSON style. Retrieve a value from each one. 
+
+# Keys are strings
+hash1 = {
+    "item1" => "milk",
+    "item2" => "bread",
+    "item3" => "eggs"
+}
+puts hash1["item1"]
+
+# Keys are symbols
+hash2 = {
+    :item1 => "milk",
+    :item2 => "bread",
+    :item3 => "eggs"
+}
+puts hash2[:item2]
+
+# JSON style. Note the keys here are still symbols. 
+hash3 = {
+    item1: "milk",
+    item2: "bread",
+    item3: "eggs"
+}
+puts hash3[:item3]
+
+
+
+
+
+*** 26hashes2
+Create a hash and check if a specific key exists. Print one message if it does and another if it does not. 
+
+list = {
+    item1: "milk",
+    item2: "eggs"
+}
+
+# If a hash key is not found, it will return nil which is falsey. 
+if list[:item2]
+    puts "Eggs are on the list."
+else
+    puts "Missing."
+end
+
+
+
+
+
+*** 27hashes3
+Create a hash. Then update the value of one of the keys and also create a new key with a value. 
+
+list = {
+    item1: "milk",
+    item2: "eggs"
+}
+
+list[:item2] = "cheese"
+
+list[:item3] = "bread"
+
+
+
+
+
+*** 28hashes4
+Show that you can create and manipulate nested data structures. 
+
+# Array of arrays
+outer_array1 = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+# This will print 7
+puts outer_array1[2][0]
+
+
+# Array of hashes
+outer_array2 = [
+    {num1: 1, num2: 2, num3: 3},
+    {num1: 4, num2: 5, num3: 6},
+    {num1: 7, num2: 8, num3: 9}
+]
+# This will print 5
+puts outer_array2[1][:num2]
+
+
+# Hash of arrays
+outer_hash1 = {
+    array1: [1, 2, 3],
+    array2: [4, 5, 6], 
+    array3: [7, 8, 9]
+}
+# This will print out 6
+puts outer_hash1[:array2][2]
+
+
+# Hash of hashes
+outer_hash2 = {
+    hash1: {num1: 1, num2: 2, num3: 3},
+    hash2: {num1: 4, num2: 5, num3: 6},
+    hash3: {num1: 7, num2: 8, num3: 9}
+}
+# This will print out 2
+puts outer_hash2[:hash1][:num2]
