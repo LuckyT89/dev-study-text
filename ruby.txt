@@ -566,3 +566,178 @@ outer_hash2 = {
 }
 # This will print out 2
 puts outer_hash2[:hash1][:num2]
+
+
+
+
+
+*** 29classes1
+Create a class with an instance method. Create an instance of the class and call the method. 
+
+# Class names start with a capital letter. If they are more than one word, they should use CamelCase 
+# unlike variable names which should use snake_case in Ruby. 
+class MyClass
+    def say_hi
+        puts "Hi there."
+    end
+end
+
+item1 = MyClass.new
+item1.say_hi
+
+
+
+
+
+*** 30classes2
+Create a class with a setter and getter method. Create an instance and use these methods to create and display an instance variable. 
+
+# The @ symbol turns a local variable into an instance variable, meaning it becomes an attribute/property of that object. 
+class Person
+
+# Note the '=' on the following line is just a character in the variable name. This is a convention for 
+# naming setter methods. 
+def name=(name)
+    @name = name
+end
+  
+def name
+    @name
+end
+  
+end 
+
+kanye = Person.new
+
+# The following line is syntactic sugar for using a setter method. The standard way to 
+# do it would be like this: kanye.name=("Kanye")
+kanye.name = "Kanye" 
+
+puts kanye.name
+
+
+
+
+
+*** 31classes3
+Make a class with getter and setter methods created with attribute reader and writer macros. Then replace these with attribute accessors. 
+
+# This class uses attribute reader and writer macros
+class Person
+    attr_reader :name, :age
+    attr_writer :name, :age
+end 
+
+jim = Person.new
+jim.name = "Jim"
+jim.age = 23
+puts "#{jim.name} is #{jim.age} years old."
+
+
+# This class uses a single attribute accessor macro which combines the reader and writer macro functionality. 
+class OtherPerson
+    attr_accessor :name, :age
+end
+
+dan = OtherPerson.new
+dan.name = "Dan"
+dan.age = 30
+puts "#{dan.name} is #{dan.age} years old."
+
+
+
+
+
+*** 32classes4
+Create a class with an initialize method and create an instance of the class. 
+
+class Dog
+    attr_reader :breed, :color
+  
+    def initialize(breed, color)
+      @breed = breed
+      @color = color
+    end 
+end
+
+leo = Dog.new("ridgeback", "tan")
+
+
+
+
+
+*** 33self1
+Show how to use the self keyword. 
+class Dog
+    attr_accessor :name, :owner
+  
+    def initialize(name)
+      @name = name
+    end
+  
+    def get_adopted(owner_name)
+      self.owner = owner_name
+    end
+end
+
+rover = Dog.new("Rover")
+rover.get_adopted("Dan")
+puts "#{rover.name} was adopted by #{rover.owner}."
+
+
+
+
+
+*** 34classes1
+Create a class with a class variable and class method.
+
+class Album
+    @@album_count = 0 
+  
+    def initialize
+      @@album_count += 1
+    end
+  
+    # The name of a class method starts with 'self.'
+    def self.count
+      @@album_count
+    end
+end
+
+album1 = Album.new
+album2 = Album.new
+album3 = Album.new
+
+puts Album.count
+
+
+
+
+
+*** 35private1
+Make a class with private methods.
+
+# Private methods can't be called by an explicit receiver, like an instance of a class or the class itself. Private methods
+# encapsulate functionality and other methods can depend on them. 
+class Bartender
+    def make_drink
+        @ingredients = []
+        choose_liquor
+        choose_mixer
+        puts "Here is your drink, it contains #{@ingredients}"
+    end
+
+    # The methods below the 'private' keyword are private. 
+    private
+
+    def choose_liquor
+        @ingredients << "whiskey"
+    end
+
+    def choose_mixer
+        @ingredients << "vermouth"
+    end
+end
+
+dan = Bartender.new
+dan.make_drink
