@@ -448,18 +448,7 @@ puts
 
 
 
-*** 24iteration4
-Show how to sort an array. 
-
-items = ["ball", "dog", "apple", "elephant", "cat"]
-print items.sort
-puts
-
-
-
-
-
-*** 25hashes1
+*** 24hashes1
 Create a hash using string keys, symbol keys, and using JSON style. Retrieve a value from each one. 
 
 # Keys are strings
@@ -490,7 +479,7 @@ puts hash3[:item3]
 
 
 
-*** 26hashes2
+*** 25hashes2
 Create a hash and check if a specific key exists. Print one message if it does and another if it does not. 
 
 list = {
@@ -509,7 +498,7 @@ end
 
 
 
-*** 27hashes3
+*** 26hashes3
 Create a hash. Then update the value of one of the keys and also create a new key with a value. 
 
 list = {
@@ -525,7 +514,7 @@ list[:item3] = "bread"
 
 
 
-*** 28hashes4
+*** 27hashes4
 Show that you can create and manipulate nested data structures. 
 
 # Array of arrays
@@ -571,7 +560,7 @@ puts outer_hash2[:hash1][:num2]
 
 
 
-*** 29classes1
+*** 28classes1
 Create a class with an instance method. Create an instance of the class and call the method. 
 
 # Class names start with a capital letter. If they are more than one word, they should use CamelCase 
@@ -589,21 +578,20 @@ item1.say_hi
 
 
 
-*** 30classes2
+*** 29classes2
 Create a class with a setter and getter method. Create an instance and use these methods to create and display an instance variable. 
 
 # The @ symbol turns a local variable into an instance variable, meaning it becomes an attribute/property of that object. 
 class Person
 
-# Note the '=' on the following line is just a character in the variable name. This is a convention for 
-# naming setter methods. 
-def name=(name)
-    @name = name
-end
+    # Note the '=' on the following line is just a character in the method name that identifies this method as a setter method. 
+    def name=(name)
+        @name = name
+    end
   
-def name
-    @name
-end
+    def name
+        @name
+    end
   
 end 
 
@@ -619,8 +607,8 @@ puts kanye.name
 
 
 
-*** 31classes3
-Make a class with getter and setter methods created with attribute reader and writer macros. Then replace these with attribute accessors. 
+*** 30classes3
+Make a class with getter and setter methods created with attribute reader and writer macros. Then replace these with a single attribute accessor macro. 
 
 # This class uses attribute reader and writer macros
 class Person
@@ -648,7 +636,7 @@ puts "#{dan.name} is #{dan.age} years old."
 
 
 
-*** 32classes4
+*** 31classes4
 Create a class with an initialize method and create an instance of the class. 
 
 class Dog
@@ -666,8 +654,11 @@ leo = Dog.new("ridgeback", "tan")
 
 
 
-*** 33self1
-Show how to use the self keyword. 
+*** 32self1
+Show how to use the self keyword.
+
+# A Dog instance is only initiated with a name but an owner can be assigned later on with the 
+# get_adopted method which uses the self keyword. 
 class Dog
     attr_accessor :name, :owner
   
@@ -688,7 +679,7 @@ puts "#{rover.name} was adopted by #{rover.owner}."
 
 
 
-*** 34classes1
+*** 33classes1
 Create a class with a class variable and class method.
 
 class Album
@@ -714,7 +705,7 @@ puts Album.count
 
 
 
-*** 35private1
+*** 34private1
 Make a class with private methods.
 
 # Private methods can't be called by an explicit receiver, like an instance of a class or the class itself. Private methods
