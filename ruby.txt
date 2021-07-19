@@ -732,3 +732,447 @@ end
 
 dan = Bartender.new
 dan.make_drink
+
+
+
+
+
+*** 35advanced1
+Create a class with a class variable and class method that can return a list of all instances that have been created. 
+
+class Dog
+
+    @@all = []
+  
+    attr_accessor :name
+  
+    def initialize(name)
+      @name = name
+      @@all << self
+    end
+  
+    # Class methods start with 'self.'
+    def self.all
+      @@all
+    end
+end
+
+dog1 = Dog.new("Leo")
+dog2 = Dog.new("Max")
+dog3 = Dog.new("Tiny")
+
+# This will print a list of all Dog instances that have been created. 
+puts Dog.all
+
+
+
+
+
+*** 36advanced2
+Create a class with a class variable and class method that can return a list of all instances that have been created. Then add a class method that can find a specific class instance by name. 
+
+class Person
+    attr_accessor :name
+    @@all = []
+  
+    def initialize(name)
+      @name = name
+      @@all << self
+    end
+  
+    def self.all
+      @@all
+    end
+  
+    def self.find_by_name(name)
+      @@all.find{|person| person.name == name}
+    end
+end
+  
+Person.new("Grace Hopper")
+Person.new("Sandi Metz")
+
+grace = Person.find_by_name("Grace Hopper")
+puts grace.name
+
+
+
+
+
+*** 37advanced3
+Create a class with a custom constructor method.
+
+class Person
+    @@all = []
+
+    def self.all
+        @@all
+    end
+  
+    def self.create
+      @@all << self.new
+    end
+end
+
+person1 = Person.new
+person2 = Person.new
+person3 = Person.create
+person4 = Person.create
+person5 = Person.create
+
+# Note that this will only display the Person objects created with the custom 'create' method. Those created with the standard Person.new method 
+# will not be added to the @@all class variable. 
+puts Person.all
+
+
+
+
+
+*** 38relationships1
+Create two classes that have a belongs to relationship. 
+
+class Song
+    attr_accessor :title, :artist
+  
+    def initialize(title)
+      @title = title
+    end 
+end 
+
+class Artist
+    attr_accessor :name, :genre
+  
+    def initialize(name, genre) 
+      @name = name
+      @genre = genre
+    end
+end
+
+drake = Artist.new("Drake", "rap")
+hotline_bling = Song.new("Hotline Bling")
+
+# The artist property of the Song object is being set to the Artist object. The Song object belongs to the Artist object. 
+hotline_bling.artist = drake 
+
+
+
+
+
+*** 39relationships2
+Create two classes that have a has many/belongs to relationship. 
+
+# An Artist has many Songs and a Song belongs to an Artist. Note that an individual Song keeps track of it's Artist. 
+class Song
+    attr_accessor :artist, :name, :genre
+  
+    @@all = []
+  
+    def initialize(name, genre)
+      @name = name
+      @genre = genre
+      save
+    end
+  
+    def save
+      @@all << self
+    end
+  
+    def self.all
+      @@all
+    end
+end
+
+
+class Artist
+    attr_accessor :name
+  
+    def initialize(name)
+      @name = name
+    end
+  
+    def add_song(song)
+      song.artist = self
+    end
+  
+    def songs
+      Song.all.select {|song| song.artist == self}
+    end
+end
+
+led_zeppelin = Artist.new("Led Zeppelin")
+jimi_hendrix = Artist.new("Jimi Hendrix")
+
+kashmir = Song.new("Kashmir", "classic rock")
+stairway = Song.new("Stairway to Heaven", "classic rock")
+voodoo_child = Song.new("Voodoo Child", "classic rock")
+
+led_zeppelin.add_song(kashmir)
+led_zeppelin.add_song(stairway)
+jimi_hendrix.add_song(voodoo_child)
+
+p led_zeppelin.songs
+p jimi_hendrix.songs
+
+
+
+
+
+*** 40relationships3
+Create three classes to show a has many through relationship. 
+
+# Customers are connected to Waiters through the Meal class 
+
+class Customer
+    attr_accessor :name, :age
+  
+    @@all = []
+  
+    def initialize(name, age)
+      @name = name
+      @age = age
+      @@all << self
+    end
+
+    def new_meal(waiter, total, tip=0)
+        Meal.new(waiter, self, total, tip)
+    end 
+
+    def count_meals
+        count = Meal.all.select do |meal|
+            meal.customer == self
+        end
+        "#{self.name} ate #{count.length} meals."
+    end
+  
+    def self.all
+      @@all
+    end
+end
+
+
+class Waiter
+    attr_accessor :name, :yrs_experience
+  
+    @@all = []
+  
+    def initialize(name, yrs_experience)
+      @name = name
+      @yrs_experience = yrs_experience
+      @@all << self
+    end
+
+    def new_meal(customer, total, tip=0)
+        Meal.new(self, customer, total, tip)
+    end
+  
+    def self.all
+      @@all
+    end
+end
+
+
+class Meal
+    attr_accessor :waiter, :customer, :total, :tip
+  
+    @@all = []
+  
+    def initialize(waiter, customer, total, tip=0)
+      @waiter = waiter
+      @customer = customer
+      @total = total
+      @tip = tip
+      @@all << self
+    end
+  
+    def self.all
+      @@all
+    end
+end 
+
+
+sam = Customer.new("Sam", 27)
+pat = Waiter.new("Pat", 2)
+alex = Waiter.new("Alex", 5)
+
+sam.new_meal(pat, 50, 10) # A Customer creates a Meal, passing in a Waiter instance
+sam.new_meal(alex, 20, 3) # A Customer creates a Meal, passing in a Waiter instance
+pat.new_meal(sam, 30, 5) # A Waiter creates a Meal, passing in a Customer instance 
+
+puts sam.count_meals
+
+
+
+
+
+*** 41inheritance1
+Make a class that inherits from another.
+
+class Vehicle
+    attr_accessor :wheel_size, :wheel_number
+  
+    def initialize(wheel_size, wheel_number)
+      @wheel_size = wheel_size
+      @wheel_number = wheel_number
+    end
+
+    def honk
+        puts "Honk! Honk!"
+    end
+  
+    def go
+      puts "Vehicle is going forward"
+    end
+end
+
+# Note classes are typically added as separate files. If Car was in it's own file, you would need to add the following 
+# line at the top: require_relative './vehicle'
+class Car < Vehicle
+    def go
+        puts "Car is going forward"
+    end
+end
+
+vehicle = Vehicle.new(20, 4)
+car = Car.new(24, 4)
+
+# Both Car and Vehicle have a go method. When called, it will look for the method on the child class and if it does not
+# see it then it will look at the parent class for that method. 
+vehicle.honk
+vehicle.go
+car.honk
+car.go
+
+
+
+
+
+*** 42modules1
+Create a module with both instance methods and class methods that other classes can use. 
+
+# If you want to use both instance and class methods inside a module, you can group the instance methods together in one module and the 
+# class methods together in another module and then nest them inside a parent module. 
+module Dance
+    module InstanceMethods
+        def twirl
+            "I'm twirling!"
+        end
+        
+        def pirouette
+            "I'm doing a pirouette."
+        end
+    end
+
+    module ClassMethods
+        def metadata
+            "This class produces objects that love to dance."
+        end
+    end
+end
+
+# If Kid was in it's own file, you would need to include the following line: require_relative './Dance'
+class Kid
+    # The include keyword will allow the instance methods to be used and the extend keyword will allow the class methods to be used.
+    # The :: symbol allows you to use the methods inside the nested module. 
+    include Dance::InstanceMethods 
+    extend Dance::ClassMethods
+  
+    attr_accessor :name
+  
+    def initialize(name)
+      @name = name
+    end
+end
+
+# If Dancer was in it's own file, you would need to include the following line: require_relative './Dance'
+class Dancer
+    include Dance::InstanceMethods
+    extend Dance::ClassMethods
+  
+    attr_accessor :name
+  
+    def initialize(name)
+      @name = name
+    end
+end
+
+kid1 = Kid.new("Sandy")
+dancer1 = Dancer.new("Amanda")
+
+puts kid1.twirl
+puts Kid.metadata
+puts dancer1.twirl
+puts Dancer.metadata
+
+
+
+
+
+*** 43super1
+Show how to use the super keyword to add functionality to a method of a child class. 
+
+class User
+    attr_accessor :logged_in
+
+    def log_in
+      @logged_in = true
+    end
+end
+
+
+class Student < User
+    attr_accessor :logged_in, :in_class
+
+    def log_in
+        # The super keyword will use all the functionality of the log_in method from the parent class
+        # and then add any extra functionality that is written below it. 
+        super
+        @in_class = true
+    end
+end
+
+john = Student.new
+john.log_in
+puts john.logged_in
+puts john.in_class
+
+
+
+
+
+*** 44keywords1
+Show how to use keyword arguments and also how to use them for mass assignment. 
+
+# You can set default arguments with keywords if you want like this: (name: "Beyonce", current_age: 31)
+def happy_birthday(name:, current_age:)
+    puts "Happy Birthday, #{name}"
+    current_age += 1
+    puts "You are now #{current_age} years old"
+end
+
+# With keyword arguments you must but in a key and a value but the order of the arguments does not matter. We could put in name: "Carmelo Anthony"
+# first and the method would still work properly. 
+happy_birthday(current_age: 31, name: "Carmelo Anthony")
+
+
+# Mass assignment lets you pass a hash as an argument with all the key/value pairs the method is expecting. 
+class Person
+    attr_accessor :name, :age
+  
+    def initialize(name:, age:)
+      @name = name
+      @age = age
+    end
+end
+
+person_attributes = {name: "Sophie", age: 26}
+sophie = Person.new(person_attributes)
+
+p sophie
+
+
+
+
+
+*** 45meta1
+Show how to set up a class that can be initialized with an unkown number of attributes.
+
