@@ -741,7 +741,6 @@ dan.make_drink
 Create a class with a class variable and class method that can return a list of all instances that have been created. 
 
 class Dog
-
     @@all = []
   
     attr_accessor :name
@@ -1176,3 +1175,24 @@ p sophie
 *** 45meta1
 Show how to set up a class that can be initialized with an unkown number of attributes.
 
+# This method means we do not need to know exactly how many attributes a User object will be created with. If we are pulling data
+# from an API and using it to making objects, if we typically receive a hash with four key/value pairs, this technique will allow us to still 
+# make objects if the API changes and now returns hashes with either more or less than four key/value pairs. 
+
+class User
+    def initialize(attributes)
+        # Using the each method on a hash requires the key and the value, then does something for each one. 
+        attributes.each do |key, value|
+            # We will now have a setter and getter method for each key/value pair and the attributes will be correctly
+            # set when an instance is created. 
+            self.class.attr_accessor(key)
+            self.send(("#{key}="), value)
+        end
+    end
+end
+
+twitter_user = {name: "Sophie", user_name: "sm_debenedetto", age: 26, location: "NY, NY"}
+
+sophie = User.new(twitter_user)
+
+p sophie
