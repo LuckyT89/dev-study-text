@@ -1,0 +1,63 @@
+GETTING STARTED WITH SQL
+
+    Database Basics
+        -create a new sqlite3 database
+        -create a table
+        -look at the schema
+        -alter a table
+        -delete (drop) a table
+
+    Writing Database Commands to a File
+        -create a SQL command inside a .sql file and run it from the command line
+
+    SQL Insert, Select, Update and Delete
+        -INSERT INTO
+        -SELECT 
+        -WHERE 
+        -UPDATE 
+        -DELETE 
+
+    SQL Queries
+        -ORDER BY 
+        -ASC, DESC
+        -LIMIT
+        -BETWEEN
+        -NULL
+        -COUNT
+        -GROUP BY
+
+    SQL Grouping and Sorting
+        -ORDER BY
+        -LIMIT 
+        -GROUP BY 
+        -HAVING and WHERE
+
+    Aggregate Functions
+        -AVG
+        -SUM
+        -COUNT
+        -MIN and MAX 
+
+
+
+
+
+TABLE RELATIONS IN SQL
+
+    Associating Tables with Foreign Keys
+        -Associate two tables with a foreign key column
+
+    SQL Joins
+        -inner
+        -left
+        -right (not supported by sqlite3)
+        -outer (not supported by sqlite3)
+    
+    Creating Join Tables
+        -foreign keys for has many/belongs to relationships
+        -join tables for many to many relationships
+        -query a join table
+    
+    Complex Joins
+        -deeper into inner joins (can't do all of this with sqlite3)
+
